@@ -1,0 +1,860 @@
+{
+  "type": "diff",
+  "version": "9",
+  "dialect": "postgres",
+  "id": "2a684b9c-cffe-474b-bbcd-6835625cbc4b",
+  "prevIds": [
+    "7bcc701d-8b64-4f30-b5a1-c94fa7ced850"
+  ],
+  "footprints": [
+    {
+      "statementType": "create_enum",
+      "statementTarget": [
+        "enum",
+        "public",
+        "film_status"
+      ],
+      "writes": [
+        "s|enum|public.film_status",
+        "n|enum|public.film_status",
+        "e|enum|public.film_status",
+        "n|type|public.film_status"
+      ],
+      "reads": [
+        "n|sch|public"
+      ]
+    },
+    {
+      "statementType": "create_enum",
+      "statementTarget": [
+        "enum",
+        "public",
+        "film_user_role"
+      ],
+      "writes": [
+        "s|enum|public.film_user_role",
+        "n|enum|public.film_user_role",
+        "e|enum|public.film_user_role",
+        "n|type|public.film_user_role"
+      ],
+      "reads": [
+        "n|sch|public"
+      ]
+    },
+    {
+      "statementType": "create_table",
+      "statementTarget": [
+        "table",
+        "public",
+        "film"
+      ],
+      "writes": [
+        "s|tbl|public.film",
+        "n|tbl|public.film",
+        "e|tbl|public.film",
+        "n|rel|public.film",
+        "n|type|public.film",
+        "n|rel|public.film_pkey",
+        "n|rel|public.film_title_list_idx"
+      ],
+      "reads": [
+        "n|sch|public",
+        "n|enum|public.film_status"
+      ]
+    },
+    {
+      "statementType": "create_table",
+      "statementTarget": [
+        "table",
+        "public",
+        "film_list"
+      ],
+      "writes": [
+        "s|tbl|public.film_list",
+        "n|tbl|public.film_list",
+        "e|tbl|public.film_list",
+        "n|rel|public.film_list",
+        "n|type|public.film_list",
+        "n|rel|public.film_list_pkey"
+      ],
+      "reads": [
+        "n|sch|public"
+      ]
+    },
+    {
+      "statementType": "create_table",
+      "statementTarget": [
+        "table",
+        "public",
+        "film_list_user"
+      ],
+      "writes": [
+        "s|tbl|public.film_list_user",
+        "n|tbl|public.film_list_user",
+        "e|tbl|public.film_list_user",
+        "n|rel|public.film_list_user",
+        "n|type|public.film_list_user",
+        "n|rel|public.film_list_user_pkey"
+      ],
+      "reads": [
+        "n|sch|public",
+        "n|enum|public.film_user_role"
+      ]
+    },
+    {
+      "statementType": "create_index",
+      "statementTarget": [
+        "index",
+        "public",
+        "film",
+        "idx_film_status"
+      ],
+      "writes": [
+        "s|idx|public.idx_film_status",
+        "n|idx|public.idx_film_status",
+        "e|idx|public.idx_film_status",
+        "n|rel|public.idx_film_status"
+      ],
+      "reads": [
+        "n|tbl|public.film",
+        "n|sch|public",
+        "n|col|public.film.status"
+      ]
+    },
+    {
+      "statementType": "create_index",
+      "statementTarget": [
+        "index",
+        "public",
+        "film",
+        "film_title_trgm_idx"
+      ],
+      "writes": [
+        "s|idx|public.film_title_trgm_idx",
+        "n|idx|public.film_title_trgm_idx",
+        "e|idx|public.film_title_trgm_idx",
+        "n|rel|public.film_title_trgm_idx"
+      ],
+      "reads": [
+        "n|tbl|public.film",
+        "n|sch|public",
+        "n|col|public.film.title"
+      ]
+    },
+    {
+      "statementType": "create_index",
+      "statementTarget": [
+        "index",
+        "public",
+        "film",
+        "film_desc_idx"
+      ],
+      "writes": [
+        "s|idx|public.film_desc_idx",
+        "n|idx|public.film_desc_idx",
+        "e|idx|public.film_desc_idx",
+        "n|rel|public.film_desc_idx"
+      ],
+      "reads": [
+        "n|tbl|public.film",
+        "n|sch|public",
+        "n|col|public.film.description"
+      ]
+    },
+    {
+      "statementType": "create_index",
+      "statementTarget": [
+        "index",
+        "public",
+        "film_list",
+        "idx_film_list_name"
+      ],
+      "writes": [
+        "s|idx|public.idx_film_list_name",
+        "n|idx|public.idx_film_list_name",
+        "e|idx|public.idx_film_list_name",
+        "n|rel|public.idx_film_list_name"
+      ],
+      "reads": [
+        "n|tbl|public.film_list",
+        "n|sch|public",
+        "n|col|public.film_list.name"
+      ]
+    },
+    {
+      "statementType": "create_index",
+      "statementTarget": [
+        "index",
+        "public",
+        "film_list",
+        "film_list_name_trgm_idx"
+      ],
+      "writes": [
+        "s|idx|public.film_list_name_trgm_idx",
+        "n|idx|public.film_list_name_trgm_idx",
+        "e|idx|public.film_list_name_trgm_idx",
+        "n|rel|public.film_list_name_trgm_idx"
+      ],
+      "reads": [
+        "n|tbl|public.film_list",
+        "n|sch|public",
+        "n|col|public.film_list.name"
+      ]
+    },
+    {
+      "statementType": "create_fk",
+      "statementTarget": [
+        "table",
+        "public",
+        "film"
+      ],
+      "writes": [
+        "s|fk|public.film.film_film_list_id_film_list_id_fkey",
+        "n|fk|public.film.film_film_list_id_film_list_id_fkey",
+        "e|fk|public.film.film_film_list_id_film_list_id_fkey",
+        "n|con|public.film.film_film_list_id_film_list_id_fkey"
+      ],
+      "reads": [
+        "n|tbl|public.film",
+        "n|sch|public",
+        "n|tbl|public.film_list",
+        "n|sch|public",
+        "n|col|public.film.film_list_id",
+        "n|col|public.film_list.id",
+        "e|uniqueness|public.film_list.id"
+      ]
+    },
+    {
+      "statementType": "create_fk",
+      "statementTarget": [
+        "table",
+        "public",
+        "film_list_user"
+      ],
+      "writes": [
+        "s|fk|public.film_list_user.film_list_user_user_id_user_id_fkey",
+        "n|fk|public.film_list_user.film_list_user_user_id_user_id_fkey",
+        "e|fk|public.film_list_user.film_list_user_user_id_user_id_fkey",
+        "n|con|public.film_list_user.film_list_user_user_id_user_id_fkey"
+      ],
+      "reads": [
+        "n|tbl|public.film_list_user",
+        "n|sch|public",
+        "n|tbl|public.user",
+        "n|sch|public",
+        "n|col|public.film_list_user.user_id",
+        "n|col|public.user.id",
+        "e|uniqueness|public.user.id"
+      ]
+    },
+    {
+      "statementType": "create_fk",
+      "statementTarget": [
+        "table",
+        "public",
+        "film_list_user"
+      ],
+      "writes": [
+        "s|fk|public.film_list_user.film_list_user_film_list_id_film_list_id_fkey",
+        "n|fk|public.film_list_user.film_list_user_film_list_id_film_list_id_fkey",
+        "e|fk|public.film_list_user.film_list_user_film_list_id_film_list_id_fkey",
+        "n|con|public.film_list_user.film_list_user_film_list_id_film_list_id_fkey"
+      ],
+      "reads": [
+        "n|tbl|public.film_list_user",
+        "n|sch|public",
+        "n|tbl|public.film_list",
+        "n|sch|public",
+        "n|col|public.film_list_user.film_list_id",
+        "n|col|public.film_list.id",
+        "e|uniqueness|public.film_list.id"
+      ]
+    }
+  ],
+  "deltas": [
+    {
+      "op": "create",
+      "row": {
+        "schema": "public",
+        "name": "film",
+        "isRlsEnabled": false,
+        "entityType": "tables"
+      }
+    },
+    {
+      "op": "create",
+      "row": {
+        "schema": "public",
+        "name": "film_list",
+        "isRlsEnabled": false,
+        "entityType": "tables"
+      }
+    },
+    {
+      "op": "create",
+      "row": {
+        "schema": "public",
+        "name": "film_list_user",
+        "isRlsEnabled": false,
+        "entityType": "tables"
+      }
+    },
+    {
+      "op": "create",
+      "row": {
+        "schema": "public",
+        "name": "film_status",
+        "values": [
+          "Viewed",
+          "InQueue"
+        ],
+        "entityType": "enums"
+      }
+    },
+    {
+      "op": "create",
+      "row": {
+        "schema": "public",
+        "name": "film_user_role",
+        "values": [
+          "Owner",
+          "Edit",
+          "Read"
+        ],
+        "entityType": "enums"
+      }
+    },
+    {
+      "op": "create",
+      "row": {
+        "schema": "public",
+        "table": "film",
+        "name": "id",
+        "type": "uuid",
+        "typeSchema": null,
+        "notNull": true,
+        "dimensions": 0,
+        "default": null,
+        "generated": null,
+        "identity": null,
+        "entityType": "columns"
+      }
+    },
+    {
+      "op": "create",
+      "row": {
+        "schema": "public",
+        "table": "film",
+        "name": "film_list_id",
+        "type": "uuid",
+        "typeSchema": null,
+        "notNull": false,
+        "dimensions": 0,
+        "default": null,
+        "generated": null,
+        "identity": null,
+        "entityType": "columns"
+      }
+    },
+    {
+      "op": "create",
+      "row": {
+        "schema": "public",
+        "table": "film",
+        "name": "position",
+        "type": "integer",
+        "typeSchema": null,
+        "notNull": true,
+        "dimensions": 0,
+        "default": null,
+        "generated": null,
+        "identity": null,
+        "entityType": "columns"
+      }
+    },
+    {
+      "op": "create",
+      "row": {
+        "schema": "public",
+        "table": "film",
+        "name": "title",
+        "type": "text",
+        "typeSchema": null,
+        "notNull": true,
+        "dimensions": 0,
+        "default": null,
+        "generated": null,
+        "identity": null,
+        "entityType": "columns"
+      }
+    },
+    {
+      "op": "create",
+      "row": {
+        "schema": "public",
+        "table": "film",
+        "name": "description",
+        "type": "text",
+        "typeSchema": null,
+        "notNull": true,
+        "dimensions": 0,
+        "default": null,
+        "generated": null,
+        "identity": null,
+        "entityType": "columns"
+      }
+    },
+    {
+      "op": "create",
+      "row": {
+        "schema": "public",
+        "table": "film",
+        "name": "image_url",
+        "type": "text",
+        "typeSchema": null,
+        "notNull": true,
+        "dimensions": 0,
+        "default": null,
+        "generated": null,
+        "identity": null,
+        "entityType": "columns"
+      }
+    },
+    {
+      "op": "create",
+      "row": {
+        "schema": "public",
+        "table": "film",
+        "name": "link_to",
+        "type": "text",
+        "typeSchema": null,
+        "notNull": true,
+        "dimensions": 0,
+        "default": null,
+        "generated": null,
+        "identity": null,
+        "entityType": "columns"
+      }
+    },
+    {
+      "op": "create",
+      "row": {
+        "schema": "public",
+        "table": "film",
+        "name": "status",
+        "type": "film_status",
+        "typeSchema": "public",
+        "notNull": false,
+        "dimensions": 0,
+        "default": "'InQueue'",
+        "generated": null,
+        "identity": null,
+        "entityType": "columns"
+      }
+    },
+    {
+      "op": "create",
+      "row": {
+        "schema": "public",
+        "table": "film",
+        "name": "created_at",
+        "type": "timestamp",
+        "typeSchema": null,
+        "notNull": true,
+        "dimensions": 0,
+        "default": "now()",
+        "generated": null,
+        "identity": null,
+        "entityType": "columns"
+      }
+    },
+    {
+      "op": "create",
+      "row": {
+        "schema": "public",
+        "table": "film",
+        "name": "updated_at",
+        "type": "timestamp",
+        "typeSchema": null,
+        "notNull": true,
+        "dimensions": 0,
+        "default": "now()",
+        "generated": null,
+        "identity": null,
+        "entityType": "columns"
+      }
+    },
+    {
+      "op": "create",
+      "row": {
+        "schema": "public",
+        "table": "film_list",
+        "name": "id",
+        "type": "uuid",
+        "typeSchema": null,
+        "notNull": true,
+        "dimensions": 0,
+        "default": null,
+        "generated": null,
+        "identity": null,
+        "entityType": "columns"
+      }
+    },
+    {
+      "op": "create",
+      "row": {
+        "schema": "public",
+        "table": "film_list",
+        "name": "name",
+        "type": "text",
+        "typeSchema": null,
+        "notNull": true,
+        "dimensions": 0,
+        "default": null,
+        "generated": null,
+        "identity": null,
+        "entityType": "columns"
+      }
+    },
+    {
+      "op": "create",
+      "row": {
+        "schema": "public",
+        "table": "film_list",
+        "name": "image_url",
+        "type": "text",
+        "typeSchema": null,
+        "notNull": true,
+        "dimensions": 0,
+        "default": null,
+        "generated": null,
+        "identity": null,
+        "entityType": "columns"
+      }
+    },
+    {
+      "op": "create",
+      "row": {
+        "schema": "public",
+        "table": "film_list",
+        "name": "created_at",
+        "type": "timestamp",
+        "typeSchema": null,
+        "notNull": true,
+        "dimensions": 0,
+        "default": "now()",
+        "generated": null,
+        "identity": null,
+        "entityType": "columns"
+      }
+    },
+    {
+      "op": "create",
+      "row": {
+        "schema": "public",
+        "table": "film_list",
+        "name": "updated_at",
+        "type": "timestamp",
+        "typeSchema": null,
+        "notNull": true,
+        "dimensions": 0,
+        "default": "now()",
+        "generated": null,
+        "identity": null,
+        "entityType": "columns"
+      }
+    },
+    {
+      "op": "create",
+      "row": {
+        "schema": "public",
+        "table": "film_list_user",
+        "name": "user_id",
+        "type": "text",
+        "typeSchema": null,
+        "notNull": true,
+        "dimensions": 0,
+        "default": null,
+        "generated": null,
+        "identity": null,
+        "entityType": "columns"
+      }
+    },
+    {
+      "op": "create",
+      "row": {
+        "schema": "public",
+        "table": "film_list_user",
+        "name": "film_list_id",
+        "type": "uuid",
+        "typeSchema": null,
+        "notNull": true,
+        "dimensions": 0,
+        "default": null,
+        "generated": null,
+        "identity": null,
+        "entityType": "columns"
+      }
+    },
+    {
+      "op": "create",
+      "row": {
+        "schema": "public",
+        "table": "film_list_user",
+        "name": "role",
+        "type": "film_user_role",
+        "typeSchema": "public",
+        "notNull": false,
+        "dimensions": 0,
+        "default": "'Read'",
+        "generated": null,
+        "identity": null,
+        "entityType": "columns"
+      }
+    },
+    {
+      "op": "create",
+      "row": {
+        "schema": "public",
+        "table": "film",
+        "name": "idx_film_status",
+        "nameExplicit": true,
+        "columns": [
+          {
+            "value": "status",
+            "isExpression": false,
+            "asc": true,
+            "nullsFirst": false,
+            "opclass": null
+          }
+        ],
+        "isUnique": false,
+        "where": null,
+        "with": "",
+        "method": "btree",
+        "concurrently": false,
+        "entityType": "indexes"
+      }
+    },
+    {
+      "op": "create",
+      "row": {
+        "schema": "public",
+        "table": "film",
+        "name": "film_title_trgm_idx",
+        "nameExplicit": true,
+        "columns": [
+          {
+            "value": "title",
+            "isExpression": false,
+            "asc": true,
+            "nullsFirst": false,
+            "opclass": {
+              "name": "gin_trgm_ops",
+              "default": false
+            }
+          }
+        ],
+        "isUnique": false,
+        "where": null,
+        "with": "",
+        "method": "gin",
+        "concurrently": false,
+        "entityType": "indexes"
+      }
+    },
+    {
+      "op": "create",
+      "row": {
+        "schema": "public",
+        "table": "film",
+        "name": "film_desc_idx",
+        "nameExplicit": true,
+        "columns": [
+          {
+            "value": "description",
+            "isExpression": false,
+            "asc": true,
+            "nullsFirst": false,
+            "opclass": {
+              "name": "gin_trgm_ops",
+              "default": false
+            }
+          }
+        ],
+        "isUnique": false,
+        "where": null,
+        "with": "",
+        "method": "gin",
+        "concurrently": false,
+        "entityType": "indexes"
+      }
+    },
+    {
+      "op": "create",
+      "row": {
+        "schema": "public",
+        "table": "film_list",
+        "name": "idx_film_list_name",
+        "nameExplicit": true,
+        "columns": [
+          {
+            "value": "name",
+            "isExpression": false,
+            "asc": true,
+            "nullsFirst": false,
+            "opclass": null
+          }
+        ],
+        "isUnique": false,
+        "where": null,
+        "with": "",
+        "method": "btree",
+        "concurrently": false,
+        "entityType": "indexes"
+      }
+    },
+    {
+      "op": "create",
+      "row": {
+        "schema": "public",
+        "table": "film_list",
+        "name": "film_list_name_trgm_idx",
+        "nameExplicit": true,
+        "columns": [
+          {
+            "value": "name",
+            "isExpression": false,
+            "asc": true,
+            "nullsFirst": false,
+            "opclass": {
+              "name": "gin_trgm_ops",
+              "default": false
+            }
+          }
+        ],
+        "isUnique": false,
+        "where": null,
+        "with": "",
+        "method": "gin",
+        "concurrently": false,
+        "entityType": "indexes"
+      }
+    },
+    {
+      "op": "create",
+      "row": {
+        "schema": "public",
+        "table": "film",
+        "name": "film_film_list_id_film_list_id_fkey",
+        "nameExplicit": false,
+        "columns": [
+          "film_list_id"
+        ],
+        "schemaTo": "public",
+        "tableTo": "film_list",
+        "columnsTo": [
+          "id"
+        ],
+        "onUpdate": "NO ACTION",
+        "onDelete": "CASCADE",
+        "entityType": "fks"
+      }
+    },
+    {
+      "op": "create",
+      "row": {
+        "schema": "public",
+        "table": "film_list_user",
+        "name": "film_list_user_user_id_user_id_fkey",
+        "nameExplicit": false,
+        "columns": [
+          "user_id"
+        ],
+        "schemaTo": "public",
+        "tableTo": "user",
+        "columnsTo": [
+          "id"
+        ],
+        "onUpdate": "NO ACTION",
+        "onDelete": "CASCADE",
+        "entityType": "fks"
+      }
+    },
+    {
+      "op": "create",
+      "row": {
+        "schema": "public",
+        "table": "film_list_user",
+        "name": "film_list_user_film_list_id_film_list_id_fkey",
+        "nameExplicit": false,
+        "columns": [
+          "film_list_id"
+        ],
+        "schemaTo": "public",
+        "tableTo": "film_list",
+        "columnsTo": [
+          "id"
+        ],
+        "onUpdate": "NO ACTION",
+        "onDelete": "CASCADE",
+        "entityType": "fks"
+      }
+    },
+    {
+      "op": "create",
+      "row": {
+        "schema": "public",
+        "table": "film_list_user",
+        "name": "film_list_user_pkey",
+        "columns": [
+          "user_id",
+          "film_list_id"
+        ],
+        "nameExplicit": false,
+        "entityType": "pks"
+      }
+    },
+    {
+      "op": "create",
+      "row": {
+        "schema": "public",
+        "table": "film",
+        "name": "film_pkey",
+        "columns": [
+          "id"
+        ],
+        "nameExplicit": false,
+        "entityType": "pks"
+      }
+    },
+    {
+      "op": "create",
+      "row": {
+        "schema": "public",
+        "table": "film_list",
+        "name": "film_list_pkey",
+        "columns": [
+          "id"
+        ],
+        "nameExplicit": false,
+        "entityType": "pks"
+      }
+    },
+    {
+      "op": "create",
+      "row": {
+        "schema": "public",
+        "table": "film",
+        "name": "film_title_list_idx",
+        "nameExplicit": true,
+        "columns": [
+          "title",
+          "film_list_id"
+        ],
+        "nullsNotDistinct": false,
+        "entityType": "uniques"
+      }
+    }
+  ]
+}
