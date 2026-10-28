@@ -33,6 +33,9 @@ services:
       context: ./
     volumes:
       - ../..:/workspaces:cached
+      - ${SSH_AUTH_SOCK:-/dev/null}:/var/run/ssh-agent.sock
+    environment:
+      - SSH_AUTH_SOCK=/var/run/ssh-agent.sock
     networks:
       - app
     restart: unless-stopped
