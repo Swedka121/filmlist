@@ -10,7 +10,10 @@ export function Container({
   return (
     <div
       {...props}
-      className={cn("h-max max-w-[80%] w-full mx-auto", className)}
+      className={cn(
+        "h-max w-full max-w-[calc(100%-2rem)] mx-auto sm:max-w-[90%] lg:max-w-[80%]",
+        className,
+      )}
     >
       {children}
     </div>

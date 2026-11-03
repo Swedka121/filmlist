@@ -1,27 +1,27 @@
 "use client";
 
 import { Skeleton } from "@/components/ui/skeleton";
-import { useQuery } from "@tanstack/react-query";
 import { authClient } from "@/lib/authClient";
 import { Button } from "@/components/ui/button";
 import { SiGoogle } from "@icons-pack/react-simple-icons";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { toast } from "@/components/ui/toast";
-import { LayoutDashboardIcon } from "lucide-react";
 
-export function HeaderLogin() {
+export function HeaderLogin({ callbackUrl }: { callbackUrl?: string }) {
   const { isPending, data } = authClient.useSession();
   if (isPending) return <Skeleton className="w-20 h-5" />;
   if (!data)
     return (
       <Button
         onClick={() =>
-          authClient.signIn.social({ provider: "google" }).catch((err) =>
-            toast.add({
-              data: "Something went wrong",
-              description: (err as Error).message,
-            }),
-          )
+          authClient.signIn
+            .social({ provider: "google", callbackURL: callbackUrl })
+            .catch((err) =>
+              toast.add({
+                data: "Something went wrong",
+                description: (err as Error).message,
+              }),
+            )
         }
       >
         Continue with Google <SiGoogle />
