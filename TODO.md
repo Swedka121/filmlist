@@ -46,7 +46,7 @@ A pet project film tracking application with user-managed lists, TMDB integratio
   - Filter controls (private/public)
   - "Create New List" button/modal
   - User panel dropdown (avatar + GDPR menu)
-- Create user panel component with GDPR options
+- Create user panel component without GDPR options for now
 
 #### 1.4 Film Lists Display
 

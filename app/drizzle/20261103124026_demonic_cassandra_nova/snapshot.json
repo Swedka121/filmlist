@@ -1,0 +1,41 @@
+{
+  "type": "diff",
+  "version": "9",
+  "dialect": "postgres",
+  "id": "cda8aed1-a442-4eb9-907b-1f9d10974811",
+  "prevIds": [
+    "2a684b9c-cffe-474b-bbcd-6835625cbc4b"
+  ],
+  "footprints": [
+    {
+      "statementType": "alter_column",
+      "statementTarget": [
+        "column",
+        "public",
+        "film_list_user",
+        "role"
+      ],
+      "writes": [
+        "s|colprop|public.film_list_user.role.notNull",
+        "s|colprop|public.film_list_user.role.default"
+      ],
+      "reads": [
+        "n|tbl|public.film_list_user",
+        "n|sch|public",
+        "n|col|public.film_list_user.role",
+        "n|enum|public.film_user_role"
+      ],
+      "sqlHash": "e698eea67d737168"
+    }
+  ],
+  "deltas": [
+    {
+      "op": "alter",
+      "key": "columns\u0000[\"public\",\"film_list_user\",\"role\"]",
+      "set": {
+        "notNull": true,
+        "default": "'Owner'"
+      }
+    }
+  ]
+}

@@ -1,0 +1,73 @@
+{
+  "type": "diff",
+  "version": "9",
+  "dialect": "postgres",
+  "id": "c1c2856e-4934-462b-adad-1afce7bd057f",
+  "prevIds": [
+    "cda8aed1-a442-4eb9-907b-1f9d10974811"
+  ],
+  "footprints": [
+    {
+      "statementType": "add_column",
+      "statementTarget": [
+        "column",
+        "public",
+        "film_list",
+        "isPublic"
+      ],
+      "writes": [
+        "s|col|public.film_list.isPublic",
+        "n|col|public.film_list.isPublic",
+        "e|col|public.film_list.isPublic"
+      ],
+      "reads": [
+        "n|tbl|public.film_list",
+        "n|sch|public"
+      ]
+    },
+    {
+      "statementType": "alter_column",
+      "statementTarget": [
+        "column",
+        "public",
+        "film_list_user",
+        "role"
+      ],
+      "writes": [
+        "s|colprop|public.film_list_user.role.default"
+      ],
+      "reads": [
+        "n|tbl|public.film_list_user",
+        "n|sch|public",
+        "n|col|public.film_list_user.role",
+        "n|enum|public.film_user_role"
+      ],
+      "sqlHash": "cd857e531a25b5b4"
+    }
+  ],
+  "deltas": [
+    {
+      "op": "create",
+      "row": {
+        "schema": "public",
+        "table": "film_list",
+        "name": "isPublic",
+        "type": "boolean",
+        "typeSchema": null,
+        "notNull": true,
+        "dimensions": 0,
+        "default": "false",
+        "generated": null,
+        "identity": null,
+        "entityType": "columns"
+      }
+    },
+    {
+      "op": "alter",
+      "key": "columns\u0000[\"public\",\"film_list_user\",\"role\"]",
+      "set": {
+        "default": "'Read'"
+      }
+    }
+  ]
+}
