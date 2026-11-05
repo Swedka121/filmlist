@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { SiGoogle } from "@icons-pack/react-simple-icons";
 import { HeaderLogin } from "@/components/blocks/HeaderLogin";
+import Image from "next/image";
 
 export default async function Header({}) {
   return (
