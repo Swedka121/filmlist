@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { SiGoogle } from "@icons-pack/react-simple-icons";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { toast } from "@/components/ui/toast";
+import { giveFallbackAvatar } from "@/lib/utils";
 
 export function HeaderLogin({ callbackUrl }: { callbackUrl?: string }) {
   const { isPending, data } = authClient.useSession();
@@ -31,14 +32,7 @@ export function HeaderLogin({ callbackUrl }: { callbackUrl?: string }) {
     <div className={"flex flex-row gap-4 items-center w-max h-full"}>
       <Avatar>
         <AvatarImage src={data.user.image!}></AvatarImage>
-        <AvatarFallback>
-          {data?.user?.name
-            ?.split(" ")
-            .slice(0, 2)
-            .map((n) => n[0])
-            .join("")
-            .toUpperCase()}
-        </AvatarFallback>
+        <AvatarFallback>{giveFallbackAvatar(data.user.name)}</AvatarFallback>
       </Avatar>
       <h2 className={"text-sm font-medium max-w-30"}>{data.user.name}</h2>
     </div>

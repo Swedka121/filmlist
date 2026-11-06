@@ -5,6 +5,8 @@ import * as schema from "@/db/schemas/schema";
 import * as authSchema from "@/db/schemas/auth-schema";
 import { eq, sql } from "drizzle-orm";
 import { cache } from "react";
+import { withMock } from "./mock.dal";
+import { createMockUserLists } from "@/testing/mockLists";
 
 interface _UserListItem {
   owner: {
@@ -17,29 +19,30 @@ interface _UserListItem {
 
 export type UserListItem = typeof schema.filmList.$inferSelect & _UserListItem;
 
-export const getUserListsDAL = withSession(
-  cache(async ({ session, user }): Promise<UserListItem[]> => {
-    const lists = await db
-      .select({
-        id: schema.filmList.id,
-        name: schema.filmList.name,
-        imageUrl: schema.filmList.imageUrl,
-        isPublic: schema.filmList.isPublic,
-        createdAt: schema.filmList.createdAt,
-        updatedAt: schema.filmList.updatedAt,
-        countOfUsers: sql<number>`(
+export const getUserListsDAL = withMock(
+  withSession(
+    cache(async ({ session, user }): Promise<UserListItem[]> => {
+      const lists = await db
+        .select({
+          id: schema.filmList.id,
+          name: schema.filmList.name,
+          imageUrl: schema.filmList.imageUrl,
+          isPublic: schema.filmList.isPublic,
+          createdAt: schema.filmList.createdAt,
+          updatedAt: schema.filmList.updatedAt,
+          countOfUsers: sql<number>`(
       SELECT count(*) 
       FROM ${schema.filmListUser} 
       WHERE ${schema.filmListUser.filmListId} = ${schema.filmList.id}
     )`,
 
-        myRole: sql<schema.FilmListUserEnum>`(
+          myRole: sql<schema.FilmListUserEnum>`(
       SELECT ${schema.filmListUser.role} 
       FROM ${schema.filmListUser} 
       WHERE ${schema.filmListUser.filmListId} = ${schema.filmList.id} 
         AND ${schema.filmListUser.userId} = ${user.id}
     )`,
-        owner: sql<{ username: string; avatarUrl: string | null }>`(
+          owner: sql<{ username: string; avatarUrl: string | null }>`(
       SELECT json_build_object('username', ${authSchema.user.name}, 'avatarUrl', ${authSchema.user.image})
       FROM ${schema.filmListUser}
       LEFT JOIN ${authSchema.user} ON ${authSchema.user.id} = ${schema.filmListUser.userId}
@@ -47,16 +50,18 @@ export const getUserListsDAL = withSession(
         AND ${schema.filmListUser.role} = ${schema.FilmListUserEnum.Owner}
       LIMIT 1
     )`,
-      } satisfies Record<keyof UserListItem, unknown>)
-      .from(schema.filmList)
-      .innerJoin(
-        schema.filmListUser,
-        eq(schema.filmListUser.filmListId, schema.filmList.id),
-      )
-      .where(eq(schema.filmListUser.userId, user.id));
+        } satisfies Record<keyof UserListItem, unknown>)
+        .from(schema.filmList)
+        .innerJoin(
+          schema.filmListUser,
+          eq(schema.filmListUser.filmListId, schema.filmList.id),
+        )
+        .where(eq(schema.filmListUser.userId, user.id));
 
-    return lists;
-  }),
+      return lists;
+    }),
+  ),
+  createMockUserLists(10),
 );
 
 export const createUserListDAL = withSession(
