@@ -30,7 +30,7 @@ function ListItem(item: UserListItem) {
         alt="image"
         width={1200}
         height={900}
-        className="w-full aspect-[4/3] object-cover object-center blur-md absolute z-0 top-0 left-0"
+        className="w-full aspect-4/3 object-cover object-center blur-md absolute z-0 top-0 left-0"
       />
       <h2 className="relative z-20 text-6xl font-black font-bebas p-10">
         {item.name}

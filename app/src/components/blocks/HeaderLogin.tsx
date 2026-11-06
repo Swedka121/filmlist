@@ -7,6 +7,8 @@ import { SiGoogle } from "@icons-pack/react-simple-icons";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { toast } from "@/components/ui/toast";
 import { giveFallbackAvatar } from "@/lib/utils";
+import { UserDropdown } from "./UserDropdown";
+import { ChevronDown } from "lucide-react";
 
 export function HeaderLogin({ callbackUrl }: { callbackUrl?: string }) {
   const { isPending, data } = authClient.useSession();
@@ -29,12 +31,17 @@ export function HeaderLogin({ callbackUrl }: { callbackUrl?: string }) {
       </Button>
     );
   return (
-    <div className={"flex flex-row gap-4 items-center w-max h-full"}>
-      <Avatar>
-        <AvatarImage src={data.user.image!}></AvatarImage>
-        <AvatarFallback>{giveFallbackAvatar(data.user.name)}</AvatarFallback>
-      </Avatar>
-      <h2 className={"text-sm font-medium max-w-30"}>{data.user.name}</h2>
-    </div>
+    <UserDropdown>
+      <div className={"flex flex-row gap-2 items-center w-max h-full p-2 px-5"}>
+        <Avatar>
+          <AvatarImage src={data.user.image!}></AvatarImage>
+          <AvatarFallback>{giveFallbackAvatar(data.user.name)}</AvatarFallback>
+        </Avatar>
+        <h2 className={"text-sm font-medium max-w-30 mr-2"}>
+          {data.user.name}
+        </h2>
+        <ChevronDown className="w-5 h-5 opacity-40" />
+      </div>
+    </UserDropdown>
   );
 }
