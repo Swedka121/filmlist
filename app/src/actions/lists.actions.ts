@@ -1,13 +1,24 @@
 "use server";
 
-import { createUserListDAL, getUserListsDAL } from "@/dal/lists.dal";
+import {
+  createUserListDAL,
+  getListByIdDAL,
+  getUserListsDAL,
+} from "@/dal/lists.dal";
 import { writeFile, mkdir } from "fs/promises";
 import { join } from "path";
 import { randomUUID } from "crypto";
 import { revalidatePath } from "next/cache";
+import { notFound } from "next/navigation";
 
 export async function getUserLists() {
   return await getUserListsDAL();
+}
+
+export async function getUserListById(id: string) {
+  const result = await getListByIdDAL(id);
+  if (!result) notFound();
+  return result;
 }
 
 export async function createUserList({

@@ -3,7 +3,6 @@ import { Spinner } from "@/components/ui/spinner";
 import { authClient } from "@/lib/authClient";
 import { giveFallbackAvatar } from "@/lib/utils";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { da } from "@faker-js/faker";
 
 function Empty() {
   return (
@@ -31,7 +30,7 @@ export default function Page() {
           <h2 className={"text-4xl   font-bold"}>{data.user.name}</h2>
         </div>
       </div>
-      <span className="border-1 border-primary/10"></span>
+      <span className="border border-primary/10"></span>
     </section>
   );
 }
