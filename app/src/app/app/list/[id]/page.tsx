@@ -1,5 +1,6 @@
 import { getUserListById } from "@/actions/lists.actions";
 import { FilmListEdit } from "@/components/blocks/FilmLists/FilmListEdit";
+import { FilmListRead } from "@/components/blocks/FilmLists/FilmListRead";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -30,10 +31,10 @@ function OwnerLook({ list }: Props) {
   );
 }
 function EditLook({ list }: Props) {
-  return <></>;
+  return <FilmListEdit films={list.filmList} />;
 }
 function ReadLook({ list }: Props) {
-  return <></>;
+  return <FilmListRead films={list.filmList} />;
 }
 
 export default async function Page({ params }: PageProps<"/app/list/[id]">) {
