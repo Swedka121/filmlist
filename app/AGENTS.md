@@ -22,7 +22,7 @@ tsc --noEmit
 
 **Stack:**
 
-- **Next.js 16.4.3** App Router with Server Components as default
+- **Next.js 16.4.6** App Router with Server Components as default
 - **TypeScript** strict mode (`"strict": true` in `tsconfig.json`)
 - **TanStack React Query** for server state management (no Redux/Zustand)
 - **Tailwind CSS v4** + **shadcn/ui** design system using `class-variance-authority`
